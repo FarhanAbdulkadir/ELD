@@ -6,6 +6,9 @@ const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 
+
+
+
 const router = express.Router();
 
 // Handles Ajax request for user information if user is authenticated
@@ -20,11 +23,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
+  const role = req.body.Roles || 0; // Defaulting to 0 if no role is provided 
 
-  const queryText = `INSERT INTO "user" (username, password)
-    VALUES ($1, $2) RETURNING id`;
+  const queryText = `INSERT INTO "user" (username, password, "Roles")
+    VALUES ($1, $2, $3) RETURNING id`;
   pool
-    .query(queryText, [username, password])
+    .query(queryText, [username, password, role])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);
@@ -37,7 +41,18 @@ router.post('/register', (req, res, next) => {
 // this middleware will run our POST if successful
 // this middleware will send a 404 if not successful
 router.post('/login', userStrategy.authenticate('local'), (req, res) => {
-  res.sendStatus(200);
+  const user = req.user; // this will contain the user info, including the role 
+  if(user){
+    res.send(
+      {
+        id: user.id, 
+        role: user.Roles, // include the role in the response 
+
+    });
+  }else {
+    res.sendStatus(401); // authorized user 
+   
+  }
 });
 
 // clear all server session information about this user

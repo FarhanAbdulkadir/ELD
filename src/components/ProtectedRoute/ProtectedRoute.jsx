@@ -27,9 +27,18 @@ function ProtectedRoute({ component, children, ...props }) {
       // are now passed along to the 'Route' Component
       {...props}
     >
-      {user.id ?
+      {user.id ?( 
+        user.role===0 ? (
+          // driver 
+          <Redirect to="/driver-dashboard" />
+        ): user.role===1 ? (
+          //dispatcher 
+          <Redirect to="/dispatcher-dashboard"/>
+        ):(
         // If the user is logged in, show the protected component
         <ProtectedComponent />
+        )
+      )
         :
         // Otherwise, redirect to the Loginpage
         <LoginPage />
