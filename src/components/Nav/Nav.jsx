@@ -27,10 +27,27 @@ function Nav() {
             <Link className="navLink" to="/user">
               Home
             </Link>
+         
 
             <Link className="navLink" to="/info">
               Info Page
             </Link>
+            <Link to="/driver-dashboard">Driver Dashboard</Link>
+
+            
+          
+        
+          {/* Conditional rendering for dashboards based on user role */}
+          {user.Roles === 0 && (
+              <Link className="navLink" to="/driver-dashboard">
+                Driver Dashboard
+              </Link>
+            )}
+            {user.Roles === 1 && (
+              <Link className="navLink" to="/dispatcher-dashboard">
+                Dispatcher Dashboard
+              </Link>
+            )}
 
             <LogOutButton className="navLink" />
           </>

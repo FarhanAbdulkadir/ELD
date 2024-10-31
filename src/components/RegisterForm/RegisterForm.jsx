@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 function RegisterForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [Roles, setRoles] = useState('');
   const errors = useSelector((store) => store.errors);
   const dispatch = useDispatch();
 
@@ -15,6 +16,7 @@ function RegisterForm() {
       payload: {
         username: username,
         password: password,
+        Roles: Roles,
       },
     });
   }; // end registerUser
@@ -51,7 +53,17 @@ function RegisterForm() {
           />
         </label>
       </div>
+    {/* Add input for dispatch/driver */}
       <div>
+        
+      <label htmlFor="Roles">
+      Roles:
+      <select name="Roles" id="Roles"  value={Roles} onChange={(event) => setRoles(event.target.value)}>
+     <option value="0">0</option>
+      <option value="1">1</option>
+    </select>
+    </label>
+
         <input className="btn" type="submit" name="submit" value="Register" />
       </div>
     </form>
