@@ -8,7 +8,7 @@ function LoginPage() {
   const user = useSelector((store)=> store.user)
   const history = useHistory();
 
-//console.log(user.Roles);
+console.log('user roles it is here', user.Roles);
   if(user.Roles===0){
     return <Redirect to="/driver-dashboard" />
   } else if(user.Roles===1){

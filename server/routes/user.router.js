@@ -23,12 +23,12 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-  const role = req.body.Roles || 0; // Defaulting to 0 if no role is provided 
+  const Roles = req.body.Roles || 0; // Defaulting to 0 if no role is provided 
 
   const queryText = `INSERT INTO "user" (username, password, "Roles")
     VALUES ($1, $2, $3) RETURNING id`;
   pool
-    .query(queryText, [username, password, role])
+    .query(queryText, [username, password, Roles])
     .then(() => res.sendStatus(201))
     .catch((err) => {
       console.log('User registration failed: ', err);
@@ -45,8 +45,9 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
   if(user){
     res.send(
       {
-        id: user.id, 
-        role: user.Roles, // include the role in the response 
+        id: req.user.id, 
+        username: req.user.username,
+        Roles: req.user.Roles, // include the role in the response 
 
     });
   }else {

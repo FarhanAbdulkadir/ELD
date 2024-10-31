@@ -15,11 +15,13 @@ function* loginUser(action) {
     // send the action.payload as the body
     // the config includes credentials which
     // allow the server session to recognize the user
-    yield axios.post('/api/user/login', action.payload, config);
+
+    const response =yield axios.post('/api/user/login', action.payload, config);
 
     // after the user has logged in
     // get the user information from the server
-    yield put({ type: 'FETCH_USER' });
+    yield put({ type: 'FETCH_USER', payload: response.data });
+
   } catch (error) {
     console.log('Error with user login:', error);
     if (error.response.status === 401) {
@@ -57,10 +59,20 @@ function* logoutUser(action) {
     console.log('Error with user logout:', error);
   }
 }
+function* fetchUser() {
+  try {
+    const response = yield axios.get('/api/user'); // Ensure this endpoint is correct
+    yield put({ type: 'SET_USER', payload: response.data });
+  } catch (error) {
+    console.log('Error fetching user:', error);
+  }
+}
+
 
 function* loginSaga() {
   yield takeLatest('LOGIN', loginUser);
   yield takeLatest('LOGOUT', logoutUser);
+  yield takeLatest('FETCH_USER', fetchUser); // added the fetch user function 
 }
 
 export default loginSaga;

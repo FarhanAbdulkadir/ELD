@@ -10,8 +10,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import DriverDashboard from '../DriverDashboard';
-import DispatcherDashboard from '../DispatcherDashboard';
+import DriverDashboard from '../DriverDashboard/DriverDashboard';
+import DispatcherDashboard from '../DispatcherDashboard/DispatcherDashboard';
 import './App.css';
 
 function App() {
@@ -22,60 +22,36 @@ function App() {
     dispatch({ type: 'FETCH_USER' });
   }, [dispatch]);
 
-  if (user.id) {
-    if (user.role === 0) {
-      return (
-        <Router>
-          <Switch>
-            <ProtectedRoute exact path="/driver-dashboard" component={DriverDashboard} />
-            <Redirect to="/driver-dashboard" />
-          </Switch>
-        </Router>
-      );
-    } else if (user.role === 1) {
-      return (
-        <Router>
-          <Switch>
-            <ProtectedRoute exact path="/dispatcher-dashboard" component={DispatcherDashboard} />
-            <Redirect to="/dispatcher-dashboard" />
-          </Switch>
-        </Router>
-      );
-    }
-  }
-
   return (
     <Router>
-      <div>
-        {!user.id && <Nav />}
-        <Switch>
-          <Redirect exact from="/" to="/home" />
-          <Route exact path="/about">
-            <AboutPage />
-          </Route>
-          <ProtectedRoute exact path="/user">
-            <UserPage />
-          </ProtectedRoute>
-          <ProtectedRoute exact path="/info">
-            <InfoPage />
-          </ProtectedRoute>
-          <Route exact path="/login">
-            {user.id ? <Redirect to="/user" /> : <LoginPage />}
-          </Route>
-          <Route exact path="/registration">
-            {user.id ? <Redirect to="/user" /> : <RegisterPage />}
-          </Route>
-          <Route exact path="/home">
-            {user.id ? <Redirect to="/user" /> : <LandingPage />}
-          </Route>
-          <Route>
-            <h1>404</h1>
-          </Route>
-        </Switch>
-        {!user.id && <Footer />}
-      </div>
-    </Router>
-  );
-}
+    <div>
+      <Nav />
+      <Switch>
+        <Redirect exact from="/" to="/home" />
+        <Route exact path="/about">
+          <AboutPage />
+        </Route>
+        <ProtectedRoute exact path="/user" component={UserPage} />
+        <ProtectedRoute exact path="/info" component={InfoPage} />
+        <ProtectedRoute exact path="/driver-dashboard" component={DriverDashboard} />
+        <ProtectedRoute exact path="/dispatcher-dashboard" component={DispatcherDashboard} />
+        <Route exact path="/login">
+        {user.id ? <Redirect to={user.Roles === 0 ? "/driver-dashboard" : "/dispatcher-dashboard"} /> : <LoginPage />}
+        </Route>
+
+        <Route exact path="/registration">
+          {user.id ? <Redirect to="/user" /> : <RegisterPage />}
+        </Route>
+        <Route exact path="/home">
+          {user.id ? <Redirect to="/user" /> : <LandingPage />}
+        </Route>
+        <Route>
+          <h1>404</h1>
+        </Route>
+      </Switch>
+      {!user.id && <Footer />}
+    </div>
+  </Router>
+  )}  
 
 export default App;
