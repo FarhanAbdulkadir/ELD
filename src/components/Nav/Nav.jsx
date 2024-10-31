@@ -6,8 +6,10 @@ import { useSelector } from 'react-redux';
 
 function Nav() {
   const user = useSelector((store) => store.user);
+  console.log("user Roles in", user.Roles)
 
   return (
+    // main nav 
     <div className="nav">
       <Link to="/home">
         <h2 className="nav-title">Prime Solo Project</h2>
@@ -23,41 +25,44 @@ function Nav() {
 
         {/* If a user is logged in, show these links */}
         {user.id && (
+        
           <>
+          {/* Link to the home page */}
             <Link className="navLink" to="/user">
               Home
             </Link>
          
-
+            {/* Link to the info page */}
             <Link className="navLink" to="/info">
               Info Page
             </Link>
-            <Link to="/driver-dashboard">Driver Dashboard</Link>
+            {/* Conditional rendering based on user role */}
+            {user.Roles===0 ? (
 
-            
+            // Link to the driver dashboard if user role is driver (0)
+            <Link className="navLink" to="/driver-dashboard">
+              Driver Dashboard 
+            </Link>
+            ): ( 
+              // Link to the dispatcher dashboard if user role is dispatcher
           
-        
-          {/* Conditional rendering for dashboards based on user role */}
-          {user.Roles === 0 && (
-              <Link className="navLink" to="/driver-dashboard">
-                Driver Dashboard
-              </Link>
-            )}
-            {user.Roles === 1 && (
               <Link className="navLink" to="/dispatcher-dashboard">
                 Dispatcher Dashboard
               </Link>
             )}
+        
 
             <LogOutButton className="navLink" />
           </>
         )}
-
+        {/* Link to the about page, always visible */}
+        
         <Link className="navLink" to="/about">
           About
         </Link>
       </div>
     </div>
+    
   );
 }
 
