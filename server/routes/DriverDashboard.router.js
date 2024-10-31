@@ -8,7 +8,7 @@ const pool = require('../modules/pool');
 router.post('/driving-log', rejectUnauthenticated,(req, res)=>{
     const { location, start_time, end_time } = req.body;
 
-    const queryText = `INSERT INTO "driving_logs" (location, start_time, end_time) 
+    const queryText = `INSERT INTO "driving_logs" (Location, start_time, end_time) 
                             VALUES ($1, $2, $3) RETURNING id
     `;
 

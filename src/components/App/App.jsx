@@ -36,7 +36,16 @@ function App() {
         <ProtectedRoute exact path="/driver-dashboard" component={DriverDashboard} />
         <ProtectedRoute exact path="/dispatcher-dashboard" component={DispatcherDashboard} />
         <Route exact path="/login">
-        {user.id ? <Redirect to={user.Roles === 0 ? "/driver-dashboard" : "/dispatcher-dashboard"} /> : <LoginPage />}
+
+
+        {user.id ? (
+          console.log("User Roles: ", user.Roles),
+        <Redirect to={user.Roles === 0 ? "/driver-dashboard" : "/dispatcher-dashboard"} /> 
+      ):(
+           <LoginPage />
+      
+      )}
+
         </Route>
 
         <Route exact path="/registration">
