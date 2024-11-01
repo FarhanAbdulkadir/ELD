@@ -10,8 +10,11 @@ const passport = require('./strategies/user.strategy');
 // Route Includes
 const userRouter = require('./routes/user.router');
 const driverDashboard = require('./routes/DriverDashboard.router');
-const loadAssignmentsRouter = require('./routes/loadAssignments.router'); // Add this line
+const loadAssignmentsRouter = require('./routes/loadAssignments.router'); 
 const vehicleInspectionRouter = require('./routes/vehicleInspection.router');
+const loadsRouter = require('./routes/loads.router');
+
+
 // Express Middleware
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
@@ -29,9 +32,17 @@ app.use('/api/user', userRouter);
 app.use('/api/driving-log', driverDashboard);
 app.use('/api/load-assignments', loadAssignmentsRouter);
 app.use('/api/vehicle-inspection', vehicleInspectionRouter);
+app.use('/api/loads', loadsRouter); 
+
 
 
 // Listen Server & Port
 app.listen(PORT, () => {
   console.log(`Listening on port: ${PORT}`);
 });
+
+
+
+
+
+
