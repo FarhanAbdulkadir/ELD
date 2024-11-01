@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
+import LoadList from '../LoadList/LoadList';
+import AssignedLoadList from '../AssignedLoadList/AssignedLoadList';
+import DrivingLogList from '../DrivingLogList/DrivingLogList';
 
 function DispatcherDashboard() {
   const [loads, setLoads] = useState([]);
@@ -7,20 +11,25 @@ function DispatcherDashboard() {
   const [drivingLogs, setDrivingLogs] = useState([]);
 
   useEffect(() => {
-    axios.get('/api/loads')
-      .then(response => setLoads(response.data))
-      .catch(error => console.error('Error fetching loads:', error));
+    const fetchData = async () => {
+      try {
+        const loadsResponse = await axios.get('/api/loads');
+        setLoads(loadsResponse.data);
 
-    axios.get('/api/load-assignments')
-      .then(response => setAssignedLoads(response.data))
-      .catch(error => console.error('Error fetching assigned loads:', error));
+        const assignedLoadsResponse = await axios.get('/api/load-assignments');
+        setAssignedLoads(assignedLoadsResponse.data);
 
-    axios.get('/api/driving-log')
-      .then(response => setDrivingLogs(response.data))
-      .catch(error => console.error('Error fetching driving logs:', error));
+        const drivingLogsResponse = await axios.get('/api/driving-log');
+        setDrivingLogs(drivingLogsResponse.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    fetchData();
   }, []);
 
-  const assignLoad = (loadId, userId) => {
+  const assignLoad = (loadId) => {
+    const userId = prompt("Please enter the user ID for assignment:");
     axios.post('/api/assign-load', { load_id: loadId, user_id: userId })
       .then(response => {
         console.log('Load assigned', response.data);
@@ -30,37 +39,32 @@ function DispatcherDashboard() {
   };
 
   return (
-    <div>
-      <h1>Dispatcher Dashboard</h1>
-
-      <h2>Assign Loads</h2>
-      <ul>
-        {loads.map(load => (
-          <li key={load.id}>
-            {load.description} - {load.pickup_location} to {load.dropoff_location}
-            <button onClick={() => assignLoad(load.id, /* User ID here */)}>Assign</button>
-          </li>
-        ))}
-      </ul>
-
-      <h2>Assigned Loads</h2>
-      <ul>
-        {assignedLoads.map(al => (
-          <li key={al.id}>
-            Load ID: {al.load_id}, User ID: {al.user_id}
-          </li>
-        ))}
-      </ul>
-
-      <h2>Driving Logs</h2>
-      <ul>
-        {drivingLogs.map(log => (
-          <li key={log.id}>
-            Location: {log.location}, Start Time: {new Date(log.start_time).toLocaleString()}, End Time: {new Date(log.end_time).toLocaleString()}
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Router>
+      <div>
+        <h1>Dispatcher Dashboard</h1>
+        <nav>
+          <ul>
+            <li><Link to="/loads">Assign Loads</Link></li>
+            <li><Link to="/assigned-loads">Assigned Loads</Link></li>
+            <li><Link to="/driving-logs">Driving Logs</Link></li>
+          </ul>
+        </nav>
+        <Switch>
+          <Route path="/loads">
+            <LoadList loads={loads} onAssignLoad={assignLoad} />
+          </Route>
+          <Route path="/assigned-loads">
+            <AssignedLoadList assignedLoads={assignedLoads} />
+          </Route>
+          <Route path="/driving-logs">
+            <DrivingLogList drivingLogs={drivingLogs} />
+          </Route>
+          <Route path="/" exact>
+            <h2>Welcome to the Dispatcher Dashboard</h2>
+          </Route>
+        </Switch>
+      </div>
+    </Router>
   );
 }
 

@@ -35,7 +35,7 @@ function App() {
         <ProtectedRoute exact path="/info" component={InfoPage} />
         <ProtectedRoute exact path="/driver-dashboard" component={DriverDashboard} />
         <ProtectedRoute exact path="/dispatcher-dashboard" component={DispatcherDashboard} />
-        <Route exact path="/login">
+        {/* <Route exact path="/login">
 
 
         {user.id ? (
@@ -46,7 +46,15 @@ function App() {
       
       )}
 
-        </Route>
+        </Route> */}
+      <Route exact path="/login">
+        {user.id && user.Roles !== undefined ? (
+        // Redirect based on user role only when loading is complete
+      <Redirect to={user.Roles === 0 ? "/driver-dashboard" : "/dispatcher-dashboard"} />
+       ) : (
+      <LoginPage />
+       )}
+      </Route>
 
         <Route exact path="/registration">
           {user.id ? <Redirect to="/user" /> : <RegisterPage />}

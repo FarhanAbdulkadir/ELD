@@ -2,12 +2,12 @@ import React, { useState } from 'react';
 import axios from 'axios';
 
 function VehicleInspectionForm() {
-  const [brakes, setBrakes] = useState('');
-  const [tires, setTires] = useState('');
-  const [lights, setLights] = useState('');
-  const [fluids, setFluids] = useState('');
-  const [electricalSystems, setElectricalSystems] = useState('');
-  const [wipers, setWipers] = useState('');
+  const [brakes, setBrakes] = useState(false);
+  const [tires, setTires] = useState(false);
+  const [lights, setLights] = useState(false);
+  const [fluids, setFluids] = useState(false);
+  const [electricalSystems, setElectricalSystems] = useState(false);
+  const [wipers, setWipers] = useState(false);
 
   const handleInspectionSubmit = (e) => {
     e.preventDefault();
@@ -22,12 +22,12 @@ function VehicleInspectionForm() {
     .then(response => {
       console.log('Inspection log saved', response);
       // Resetting state after submission
-      setBrakes('');
-      setTires('');
-      setLights('');
-      setFluids('');
-      setElectricalSystems('');
-      setWipers('');
+      setBrakes(false);
+      setTires(false);
+      setLights(false);
+      setFluids(false);
+      setElectricalSystems(false);
+      setWipers(false);
     })
     .catch(error => {
       console.log('Error saving inspection log', error);
@@ -40,38 +40,38 @@ function VehicleInspectionForm() {
       <form onSubmit={handleInspectionSubmit}>
         <label>
           Brakes:
-          <input type="radio" name="brakes" value="true" onChange={(e) => setBrakes(e.target.value)} /> Yes
-          <input type="radio" name="brakes" value="false" onChange={(e) => setBrakes(e.target.value)} /> No
+          <input type="radio" name="brakes" checked={brakes} onChange={() => setBrakes(true)} /> Yes
+          <input type="radio" name="brakes" checked={!brakes} onChange={() => setBrakes(false)} /> No
         </label>
         <br />
         <label>
           Tires:
-          <input type="radio" name="tires" value="true" onChange={(e) => setTires(e.target.value)} /> Yes
-          <input type="radio" name="tires" value="false" onChange={(e) => setTires(e.target.value)} /> No
+          <input type="radio" name="tires" checked={tires} onChange={() => setTires(true)} /> Yes
+          <input type="radio" name="tires" checked={!tires} onChange={() => setTires(false)} /> No
         </label>
         <br />
         <label>
           Lights:
-          <input type="radio" name="lights" value="true" onChange={(e) => setLights(e.target.value)} /> Yes
-          <input type="radio" name="lights" value="false" onChange={(e) => setLights(e.target.value)} /> No
+          <input type="radio" name="lights" checked={lights} onChange={() => setLights(true)} /> Yes
+          <input type="radio" name="lights" checked={!lights} onChange={() => setLights(false)} /> No
         </label>
         <br />
         <label>
           Fluids:
-          <input type="radio" name="fluids" value="true" onChange={(e) => setFluids(e.target.value)} /> Yes
-          <input type="radio" name="fluids" value="false" onChange={(e) => setFluids(e.target.value)} /> No
+          <input type="radio" name="fluids" checked={fluids} onChange={() => setFluids(true)} /> Yes
+          <input type="radio" name="fluids" checked={!fluids} onChange={() => setFluids(false)} /> No
         </label>
         <br />
         <label>
           Electrical Systems:
-          <input type="radio" name="electricalSystems" value="true" onChange={(e) => setElectricalSystems(e.target.value)} /> Yes
-          <input type="radio" name="electricalSystems" value="false" onChange={(e) => setElectricalSystems(e.target.value)} /> No
+          <input type="radio" name="electricalSystems" checked={electricalSystems} onChange={() => setElectricalSystems(true)} /> Yes
+          <input type="radio" name="electricalSystems" checked={!electricalSystems} onChange={() => setElectricalSystems(false)} /> No
         </label>
         <br />
         <label>
           Wipers:
-          <input type="radio" name="wipers" value="true" onChange={(e) => setWipers(e.target.value)} /> Yes
-          <input type="radio" name="wipers" value="false" onChange={(e) => setWipers(e.target.value)} /> No
+          <input type="radio" name="wipers" checked={wipers} onChange={() => setWipers(true)} /> Yes
+          <input type="radio" name="wipers" checked={!wipers} onChange={() => setWipers(false)} /> No
         </label>
         <br />
         <button type="submit">Submit</button>
