@@ -30,19 +30,7 @@ router.get('/assigned-loads', rejectUnauthenticated, (req, res) => {
       });
 });
 
-// Route to fetch all available loads
-router.get('/loads', rejectUnauthenticated, (req, res) => {
-    const queryText = `
-      SELECT "id", "description", "pickup_location", "dropoff_location" 
-      FROM "loads"
-    `;
-    pool.query(queryText)
-      .then(result => res.json(result.rows))
-      .catch((err) => {
-        console.log('Error fetching loads:', err);
-        res.sendStatus(500);
-      });
-});
+
 
 // Route to log driving information
 router.post('/driving-log', rejectUnauthenticated, (req, res) => {
