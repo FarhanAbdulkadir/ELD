@@ -2,40 +2,49 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import LoadList from '../LoadList/LoadList';
-import AssignedLoadList from '../AssignedLoadList/AssignedLoadList';
-import DrivingLogList from '../DrivingLogList/DrivingLogList';
+import LoadForm from '../LoadForm/LoadForm';
 
 function DispatcherDashboard() {
   const [loads, setLoads] = useState([]);
-  const [assignedLoads, setAssignedLoads] = useState([]);
-  const [drivingLogs, setDrivingLogs] = useState([]);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const loadsResponse = await axios.get('/api/loads');
-        setLoads(loadsResponse.data);
-
-        const assignedLoadsResponse = await axios.get('/api/load-assignments');
-        setAssignedLoads(assignedLoadsResponse.data);
-
-        const drivingLogsResponse = await axios.get('/api/driving-log');
-        setDrivingLogs(drivingLogsResponse.data);
-      } catch (error) {
-        console.error('Error fetching data:', error);
-      }
-    };
-    fetchData();
+    fetchLoads();
   }, []);
 
-  const assignLoad = (loadId) => {
-    const userId = prompt("Please enter the user ID for assignment:");
-    axios.post('/api/assign-load', { load_id: loadId, user_id: userId })
-      .then(response => {
-        console.log('Load assigned', response.data);
-        setAssignedLoads([...assignedLoads, response.data]);
-      })
-      .catch(error => console.error('Error assigning load:', error));
+  const fetchLoads = async () => {
+    try {
+      const response = await axios.get('/api/loads');
+      setLoads(response.data);
+    } catch (error) {
+      console.error('Error fetching loads:', error);
+    }
+  };
+
+  const addLoad = async (load) => {
+    try {
+      await axios.post('/api/loads', load);
+      fetchLoads(); // Refresh the load list
+    } catch (error) {
+      console.error('Error adding load:', error);
+    }
+  };
+
+  const updateLoad = async (id, updatedLoad) => {
+    try {
+      await axios.put(`/api/loads/${id}`, updatedLoad);
+      fetchLoads(); // Refresh the load list
+    } catch (error) {
+      console.error('Error updating load:', error);
+    }
+  };
+
+  const deleteLoad = async (id) => {
+    try {
+      await axios.delete(`/api/loads/${id}`);
+      fetchLoads(); // Refresh the load list
+    } catch (error) {
+      console.error('Error deleting load:', error);
+    }
   };
 
   return (
@@ -44,20 +53,13 @@ function DispatcherDashboard() {
         <h1>Dispatcher Dashboard</h1>
         <nav>
           <ul>
-            <li><Link to="/loads">Assign Loads</Link></li>
-            <li><Link to="/assigned-loads">Assigned Loads</Link></li>
-            <li><Link to="/driving-logs">Driving Logs</Link></li>
+            <li><Link to="/loads">Manage Loads</Link></li>
           </ul>
         </nav>
         <Switch>
           <Route path="/loads">
-            <LoadList loads={loads} onAssignLoad={assignLoad} />
-          </Route>
-          <Route path="/assigned-loads">
-            <AssignedLoadList assignedLoads={assignedLoads} />
-          </Route>
-          <Route path="/driving-logs">
-            <DrivingLogList drivingLogs={drivingLogs} />
+            <LoadList loads={loads} onDelete={deleteLoad} onUpdate={updateLoad} />
+            <LoadForm onAdd={addLoad} />
           </Route>
           <Route path="/" exact>
             <h2>Welcome to the Dispatcher Dashboard</h2>
