@@ -37,7 +37,7 @@ function Nav() {
               Info Page
             </Link>
             {/* Conditional rendering based on user role */}
-            {user.Roles===0 ? (
+            {user.Roles==='0' ? (
 
             // Link to the driver dashboard if user role is driver (0)
             <Link className="navLink" to="/driver-dashboard">

@@ -12,11 +12,16 @@ import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
 import DriverDashboard from '../DriverDashboard/DriverDashboard';
 import DispatcherDashboard from '../DispatcherDashboard/DispatcherDashboard';
+import DrivingLogForm from '../DrivingLogForm/DrivingLogForm';
+import VehicleInspectionForm from '../VehicleInspectionForm/VehicleInspectionForm';
+import LoadInformation from '../LoadInformation/LoadInformation';
+
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
+  console.log("user role is", typeof user.Roles);
 
   useEffect(() => {
     dispatch({ type: 'FETCH_USER' });
@@ -33,24 +38,29 @@ function App() {
         </Route>
         <ProtectedRoute exact path="/user" component={UserPage} />
         <ProtectedRoute exact path="/info" component={InfoPage} />
-        <ProtectedRoute exact path="/driver-dashboard" component={DriverDashboard} />
-        <ProtectedRoute exact path="/dispatcher-dashboard" component={DispatcherDashboard} />
-        {/* <Route exact path="/login">
+        <ProtectedRoute path="/driver-dashboard" component={DriverDashboard} />
+        <ProtectedRoute path="/dispatcher-dashboard" component={DispatcherDashboard} />
 
+        {/* <Route path="/driver-dashboard/driver-info" component={DrivingLogForm} />
+          <Route path="/driver-dashboard/vehicle-inspection" component={VehicleInspectionForm} />
+          <Route path="/driver-dashboard/load-information" component={LoadInformation} /> */}
+         
 
-        {user.id ? (
-          console.log("User Roles: ", user.Roles),
-        <Redirect to={user.Roles === 0 ? "/driver-dashboard" : "/dispatcher-dashboard"} /> 
-      ):(
-           <LoginPage />
       
-      )}
-
-        </Route> */}
-      <Route exact path="/login">
+          {/* <Route path="/loads">
+            <LoadList loads={loads} onDelete={deleteLoad} onUpdate={updateLoad} />
+            <LoadForm onAdd={addLoad} />
+          </Route> */}
+          
+        
+       
+        
+      <Route exact path="/login"> 
+      
         {user.id && user.Roles !== undefined ? (
         // Redirect based on user role only when loading is complete
-      <Redirect to={user.Roles === 0 ? "/driver-dashboard" : "/dispatcher-dashboard"} />
+        
+      <Redirect to={user.Roles === "0" ? "/driver-dashboard" : "/dispatcher-dashboard"} />
        ) : (
       <LoginPage />
        )}
