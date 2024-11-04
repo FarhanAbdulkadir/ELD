@@ -48,25 +48,20 @@ function DispatcherDashboard() {
   };
 
   return (
-    <Router>
+   
       <div>
         <h1>Dispatcher Dashboard</h1>
         <nav>
           <ul>
-            <li><Link to="/loads">Manage Loads</Link></li>
+            <li><Link to="/dispatcher-dashboard/loads">Manage Loads</Link></li>
           </ul>
         </nav>
-        <Switch>
-          <Route path="/loads">
+        <Route path="/dispatcher-dashboard/loads">
             <LoadList loads={loads} onDelete={deleteLoad} onUpdate={updateLoad} />
             <LoadForm onAdd={addLoad} />
           </Route>
-          <Route path="/" exact>
-            <h2>Welcome to the Dispatcher Dashboard</h2>
-          </Route>
-        </Switch>
       </div>
-    </Router>
+   
   );
 }
 

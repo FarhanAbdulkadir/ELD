@@ -49,7 +49,10 @@ router.post('/login', userStrategy.authenticate('local'), (req, res) => {
         username: req.user.username,
         Roles: req.user.Roles, // include the role in the response 
 
+
+
     });
+    console.log("roles", req.user.Roles);
   }else {
     res.sendStatus(401); // authorized user 
    

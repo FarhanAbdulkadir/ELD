@@ -77,8 +77,21 @@ router.delete('/:id', (req, res)=>{
         res.sendStatus(500);
       });
     });
+
+  
+// TESTED this driver route with postman and it works 
        
-     
+// Fetch all driver info
+router.get('/driver', (req, res) => {
+  const queryText = `SELECT * FROM "driverInfo"`;
+
+  pool.query(queryText)
+      .then(result => res.status(200).send(result.rows))
+      .catch(err => {
+          console.log('Error fetching driving logs:', err);
+          res.sendStatus(500);
+      });
+});
 
 
 module.exports = router;
