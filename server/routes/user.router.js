@@ -23,7 +23,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 router.post('/register', (req, res, next) => {
   const username = req.body.username;
   const password = encryptLib.encryptPassword(req.body.password);
-  const Roles = req.body.Roles || 0; // Defaulting to 0 if no role is provided 
+  const Roles = req.body.Roles || "0"; // Defaulting to 0 if no role is provided 
 
   const queryText = `INSERT INTO "user" (username, password, "Roles")
     VALUES ($1, $2, $3) RETURNING id`;
