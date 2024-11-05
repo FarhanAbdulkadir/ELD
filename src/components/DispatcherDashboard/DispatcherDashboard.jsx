@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import LoadList from '../LoadList/LoadList';
 import LoadForm from '../LoadForm/LoadForm';
+import DriverInfoDispatcher from '../DriverInfoDispatcher/DriverInfoDispatcher';
 
 function DispatcherDashboard() {
   const [loads, setLoads] = useState([]);
@@ -54,12 +55,20 @@ function DispatcherDashboard() {
         <nav>
           <ul>
             <li><Link to="/dispatcher-dashboard/loads">Manage Loads</Link></li>
+            <li><Link to ="/dispatcher-dashboard/loads/driver">Driver Information</Link></li>
           </ul>
         </nav>
+        
+       
         <Route path="/dispatcher-dashboard/loads">
             <LoadList loads={loads} onDelete={deleteLoad} onUpdate={updateLoad} />
             <LoadForm onAdd={addLoad} />
           </Route>
+        <Route path="/dispatcher-dashboard/loads/driver">
+        <DriverInfoDispatcher />
+       
+        </Route>
+        
       </div>
    
   );
