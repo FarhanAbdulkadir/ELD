@@ -6,7 +6,7 @@ const pool = require('../modules/pool');
 // route to post the driver info 
 router.post('/', (req, res)=>{
     const { location, start_time, end_time, user_id } = req.body;
-    console.log('req.body', req.body.location);
+    console.log('Received request body', req.body);
 
     const queryText = `INSERT INTO "driverInfo" ("location", "start_time", "end_time", "user_id") 
                             VALUES ($1, $2, $3, $4) RETURNING id
