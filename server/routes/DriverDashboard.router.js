@@ -73,7 +73,21 @@ router.get('/inspection', (req, res)=>{
         })
 })
 
+// Route to fetch loads assigned to a specific driver 
 
+router.get('/loads/:user_id', (req, res)=>{
+    const userId = req.params.user_id;
+    console.log('fetching loads for driver:', userId);
+  
+    const queryText = ` SELECT * FROM "loads" WHERE "user_id"= $1`;
+  
+    pool.query(queryText, [userId])
+      .then(result => res.json(result.rows))
+      .catch((err)=>{
+        console.log("error getting the loads for the driver", err);
+        res.sendStatus(500);
+      })
+  })
 
 
 module.exports = router

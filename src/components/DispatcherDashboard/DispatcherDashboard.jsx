@@ -56,7 +56,7 @@ function DispatcherDashboard() {
           <ul>
             <li><Link to="/dispatcher-dashboard/loads">Manage Loads</Link></li>
             <li><Link to ="/dispatcher-dashboard/loads/driver">Driver Information</Link></li>
-          </ul>
+            </ul>
         </nav>
         
        
