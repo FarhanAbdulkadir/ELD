@@ -1,10 +1,21 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Route, Switch, Link } from 'react-router-dom';
 import DrivingLogForm from '../DrivingLogForm/DrivingLogForm';
 import VehicleInspectionForm from '../VehicleInspectionForm/VehicleInspectionForm';
-import LoadInformation from '../LoadInformation/LoadInformation';
+import DriverLoadList from '../LoadInformation/LoadInformation';
 
 function DriverDashboard() {
+  const [userId, setUserId] = useState(null);
+
+  useEffect (()=>{
+    const loggedInUserId = localStorage.getItem("id");
+    if(loggedInUserId){
+      setUserId(loggedInUserId)
+    }
+  },[]);
+  if(!userId){
+    <p> please log in to view </p>
+  }
   return (
    
       <div>
@@ -18,8 +29,8 @@ function DriverDashboard() {
         </nav>
 
         <Route path="/driver-dashboard/driver-info" component={DrivingLogForm} />
-          <Route path="/driver-dashboard/vehicle-inspection" component={VehicleInspectionForm} />
-          <Route path="/driver-dashboard/load-information" component={LoadInformation} />
+        <Route path="/driver-dashboard/vehicle-inspection" component={VehicleInspectionForm} />
+        <Route path="/driver-dashboard/load-information" component={DriverLoadList} />
          
         
       </div>
