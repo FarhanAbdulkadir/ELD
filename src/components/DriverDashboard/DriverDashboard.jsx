@@ -5,17 +5,15 @@ import VehicleInspectionForm from '../VehicleInspectionForm/VehicleInspectionFor
 import DriverLoadList from '../LoadInformation/LoadInformation';
 
 function DriverDashboard() {
-  const [userId, setUserId] = useState(null);
+  // const [userId, setUserId] = useState(null);
 
-  useEffect (()=>{
-    const loggedInUserId = localStorage.getItem("id");
-    if(loggedInUserId){
-      setUserId(loggedInUserId)
-    }
-  },[]);
-  if(!userId){
-    <p> please log in to view </p>
-  }
+  // useEffect (()=>{
+  //   const loggedInUserId = localStorage.getItem("id");
+  //   if(loggedInUserId){
+  //     setUserId(loggedInUserId)
+  //   }
+  // },[]);
+  
   return (
    
       <div>
@@ -30,7 +28,8 @@ function DriverDashboard() {
 
         <Route path="/driver-dashboard/driver-info" component={DrivingLogForm} />
         <Route path="/driver-dashboard/vehicle-inspection" component={VehicleInspectionForm} />
-        <Route path="/driver-dashboard/load-information" component={DriverLoadList} />
+        <Route path="/driver-dashboard/load-information" component={DriverLoadList}/>
+                      
          
         
       </div>

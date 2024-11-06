@@ -75,8 +75,8 @@ router.get('/inspection', (req, res)=>{
 
 // Route to fetch loads assigned to a specific driver 
 
-router.get('/loads/:user_id', (req, res)=>{
-    const userId = req.params.user_id;
+router.get('/loads', (req, res)=>{
+    const userId = req.user.id;
     console.log('fetching loads for driver:', userId);
   
     const queryText = ` SELECT * FROM "loads" WHERE "user_id"= $1`;
