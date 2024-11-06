@@ -1,19 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-function DriverLoadList({ userId }) {
+function DriverLoadList() {
   const [loads, setLoads] = useState([]);
 
   useEffect(() => {
     // Ensure the userId exists before making the request
-    if (userId) {
+   
       fetchLoads();
-    }
-  }, [userId]);  // Re-fetch if the userId changes
+    
+  }, []);  // Re-fetch if the userId changes
+
 
   const fetchLoads = async () => {
     try {
-      const response = await axios.get(`/api/loads/${userId}`);
+      const response = await axios.get(`/api/driving-log/loads`);
       setLoads(response.data);
     } catch (error) {
       console.error('Error fetching loads for driver:', error);
