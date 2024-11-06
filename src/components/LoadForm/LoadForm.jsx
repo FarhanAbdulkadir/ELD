@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import swal from 'sweetalert';
 
 function LoadForm({ initialLoad, onUpdate, onAdd, onCancel }) {
   const [load, setLoad] = useState({
@@ -24,12 +25,20 @@ function LoadForm({ initialLoad, onUpdate, onAdd, onCancel }) {
     e.preventDefault();
     if (initialLoad) {
       onUpdate(load); // Update existing load
+      swal("Success!", "Load updated successfully!", "success")
     } else {
       onAdd(load); // Add new load
+      swal("Success!", "Load added successfully!", "success");
     }
     setLoad({ description: '', time: '', pickup_location: '', dropoff_location: '', user_id: '' }); // Reset form
   };
+// Handling errors 
+const handleError = (error) => { 
+  console.log('Error:', error); 
+  
+  swal("Error!", "An error occurred while processing the load.", "error");
 
+};
   return (
     <form onSubmit={handleSubmit}>
       <h3>{initialLoad ? 'Edit Load' : 'Add New Load'}</h3>

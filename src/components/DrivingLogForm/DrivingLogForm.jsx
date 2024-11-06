@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 function DrivingLogForm() {
 
@@ -17,6 +18,8 @@ function DrivingLogForm() {
       user_id: userId })
       .then(response => {
         console.log('Driving log saved', response);
+        // display success alert 
+        swal("success!", "driver info sent successfully", response)
         SetUserId('');
         setLocation('');
         setStartTime('');
@@ -25,6 +28,9 @@ function DrivingLogForm() {
       })
       .catch(error => {
         console.log('Error saving driving log', error);
+        // display alert error 
+        swal("error!", "there was an error sending driver info", "error")
+
       });
   };
 

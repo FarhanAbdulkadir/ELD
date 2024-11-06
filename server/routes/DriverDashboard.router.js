@@ -65,6 +65,7 @@ router.get('/inspection', (req, res)=>{
 
     const queryText = ` SELECT * FROM "inspection"; `
 
+
     pool.query(queryText)
         .then(result => res.status(200).send(result.rows))
         .catch((err)=>{

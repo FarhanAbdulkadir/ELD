@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import swal from 'sweetalert';
 
 function VehicleInspectionForm() {
   const [brakes, setBrakes] = useState(false);
@@ -11,7 +12,7 @@ function VehicleInspectionForm() {
 
   const handleInspectionSubmit = (e) => {
     e.preventDefault();
-    axios.post('/api/vehicle-inspection', {
+    axios.post(`/api/driving-log/inspection`, {
       brakes,
       tires,
       lights,
@@ -21,6 +22,8 @@ function VehicleInspectionForm() {
     })
     .then(response => {
       console.log('Inspection log saved', response);
+      // Display success alert 
+      swal("success!", "inspection log saved successfully!", response)
       // Resetting state after submission
       setBrakes(false);
       setTires(false);
@@ -31,6 +34,8 @@ function VehicleInspectionForm() {
     })
     .catch(error => {
       console.log('Error saving inspection log', error);
+      // Display error alert
+      swal("error!", "there was an error saving the inspection log", "error")
     });
   };
 
