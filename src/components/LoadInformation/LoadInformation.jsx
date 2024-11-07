@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './DriverLoadList.css'; // Import the CSS file
 
 function DriverLoadList() {
   const [loads, setLoads] = useState([]);
 
   useEffect(() => {
-    // Ensure the userId exists before making the request
-   
-      fetchLoads();
-    
+    // Fetch the loads data when the component mounts
+    fetchLoads();
   }, []);  // Re-fetch if the userId changes
-
 
   const fetchLoads = async () => {
     try {
@@ -22,21 +20,21 @@ function DriverLoadList() {
   };
 
   return (
-    <div>
-      <h2>Loads Assigned to Driver</h2>
+    <div className="load-list-container">
+      <h2 className="load-list-title">Loads</h2>
       {loads.length > 0 ? (
-        <table>
+        <table className="load-table">
           <thead>
             <tr>
-              <th>Description</th>
-              <th>Time</th>
-              <th>Pickup Location</th>
-              <th>Dropoff Location</th>
+              <th className="table-header">Description</th>
+              <th className="table-header">Time</th>
+              <th className="table-header">Pickup Location</th>
+              <th className="table-header">Dropoff Location</th>
             </tr>
           </thead>
           <tbody>
             {loads.map(load => (
-              <tr key={load.id}>
+              <tr key={load.id} className="table-row">
                 <td>{load.description}</td>
                 <td>{new Date(load.time).toLocaleString()}</td>
                 <td>{load.pickup_location}</td>
@@ -46,7 +44,7 @@ function DriverLoadList() {
           </tbody>
         </table>
       ) : (
-        <p>No loads assigned</p>
+        <p className="no-loads-message">No loads assigned</p>
       )}
     </div>
   );

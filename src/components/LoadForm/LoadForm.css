@@ -1,0 +1,234 @@
+.load-form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title of the form */
+  .load-form-header {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+  }
+  
+  /* Form fields */
+  .load-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Label Styling */
+  label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  /* Input Fields Styling */
+  input[type="number"],
+  input[type="text"],
+  input[type="datetime-local"] {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Focus effect on input fields */
+  input[type="number"]:focus,
+  input[type="text"]:focus,
+  input[type="datetime-local"]:focus {
+    border-color: #5b9bd5;
+    outline: none;
+  }
+  
+  /* Button Styling */
+  button {
+    padding: 18px 35px;  /* Larger button size */
+    font-size: 18px;  /* Bigger text size */
+    color: white;
+    background-color: #7f8285;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+    align-self: flex-end; /* Align button to the right */
+    margin-top: 20px;    /* Space above the button */
+    margin-right: 50%;   /* Center align the button */
+  }
+  
+  /* Hover and active state for button */
+  button:hover {
+    background-color: #4a8fb9;
+  }
+  
+  button:active {
+    background-color: #357a99;
+  }
+  
+  /* Cancel button */
+  button[type="button"] {
+    background-color: #e7e7e7;
+    color: #555;
+    margin-right: 10px;
+  }
+  
+  button[type="button"]:hover {
+    background-color: #ccc;
+  }
+  
+  button[type="button"]:active {
+    background-color: #b0b0b0;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .load-form-container {
+      padding: 15px;
+    }
+  
+    .load-form-header {
+      font-size: 24px;
+    }
+  
+    .load-form input {
+      font-size: 14px;
+    }
+  
+    .load-form button {
+      font-size: 16px;
+    }
+  }/* Container for the form */
+.load-form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title of the form */
+  .load-form-header {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+  }
+  
+  /* Form table styling */
+  .load-form-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .load-form-table td {
+    padding: 12px;
+    vertical-align: top;
+  }
+  
+  .load-form-table td label {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  /* Input Fields Styling */
+  .load-form input {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  /* Focus effect on input fields */
+  .load-form input:focus {
+    border-color: #5b9bd5;
+    outline: none;
+  }
+  
+  /* Submit Button Styling */
+  .submit-btn {
+    padding: 18px 35px;  /* Larger button size */
+    font-size: 18px;  /* Bigger text size */
+    color: white;
+    background-color: #7f8285;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+    align-self: flex-end; /* Align button to the right */
+    margin-top: 20px;    /* Space above the button */
+    margin-right: 50%;   /* Center align the button */
+  }
+  
+  /* Hover and active state for button */
+  .submit-btn:hover {
+    background-color: #4a8fb9;
+  }
+  
+  .submit-btn:active {
+    background-color: #357a99;
+  }
+  
+  /* Cancel button styling */
+  .cancel-btn {
+    background-color: #e7e7e7;
+    color: #555;
+    padding: 18px 35px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-top: 20px;
+  }
+  
+  .cancel-btn:hover {
+    background-color: #ccc;
+  }
+  
+  .cancel-btn:active {
+    background-color: #b0b0b0;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .load-form-container {
+      padding: 15px;
+    }
+  
+    .load-form-header {
+      font-size: 24px;
+    }
+  
+    .load-form input {
+      font-size: 14px;
+    }
+  
+    .submit-btn {
+      font-size: 16px;
+    }
+  
+    .cancel-btn {
+      font-size: 16px;
+    }
+  }
+  
+  

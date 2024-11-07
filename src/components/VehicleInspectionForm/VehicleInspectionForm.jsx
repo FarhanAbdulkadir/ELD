@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
+import './VehicleInspectionForm.css'; 
 
 function VehicleInspectionForm() {
   const [brakes, setBrakes] = useState(false);
@@ -40,46 +41,58 @@ function VehicleInspectionForm() {
   };
 
   return (
-    <div>
-      <h2>Vehicle Inspection</h2>
-      <form onSubmit={handleInspectionSubmit}>
-        <label>
-          Brakes:
-          <input type="radio" name="brakes" checked={brakes} onChange={() => setBrakes(true)} /> Yes
-          <input type="radio" name="brakes" checked={!brakes} onChange={() => setBrakes(false)} /> No
-        </label>
-        <br />
-        <label>
-          Tires:
-          <input type="radio" name="tires" checked={tires} onChange={() => setTires(true)} /> Yes
-          <input type="radio" name="tires" checked={!tires} onChange={() => setTires(false)} /> No
-        </label>
-        <br />
-        <label>
-          Lights:
-          <input type="radio" name="lights" checked={lights} onChange={() => setLights(true)} /> Yes
-          <input type="radio" name="lights" checked={!lights} onChange={() => setLights(false)} /> No
-        </label>
-        <br />
-        <label>
-          Fluids:
-          <input type="radio" name="fluids" checked={fluids} onChange={() => setFluids(true)} /> Yes
-          <input type="radio" name="fluids" checked={!fluids} onChange={() => setFluids(false)} /> No
-        </label>
-        <br />
-        <label>
-          Electrical Systems:
-          <input type="radio" name="electricalSystems" checked={electricalSystems} onChange={() => setElectricalSystems(true)} /> Yes
-          <input type="radio" name="electricalSystems" checked={!electricalSystems} onChange={() => setElectricalSystems(false)} /> No
-        </label>
-        <br />
-        <label>
-          Wipers:
-          <input type="radio" name="wipers" checked={wipers} onChange={() => setWipers(true)} /> Yes
-          <input type="radio" name="wipers" checked={!wipers} onChange={() => setWipers(false)} /> No
-        </label>
-        <br />
-        <button type="submit">Submit</button>
+    <div className="inspection-form-container">
+      <h2 className="inspection-form-title">Vehicle Inspection</h2>
+      <form onSubmit={handleInspectionSubmit} className="inspection-form">
+        <div className="form-group">
+          <label className="form-label">Brakes:</label>
+          <div className="radio-group">
+            <input type="radio" name="brakes" checked={brakes} onChange={() => setBrakes(true)} /> Yes
+            <input type="radio" name="brakes" checked={!brakes} onChange={() => setBrakes(false)} /> No
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Tires:</label>
+          <div className="radio-group">
+            <input type="radio" name="tires" checked={tires} onChange={() => setTires(true)} /> Yes
+            <input type="radio" name="tires" checked={!tires} onChange={() => setTires(false)} /> No
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Lights:</label>
+          <div className="radio-group">
+            <input type="radio" name="lights" checked={lights} onChange={() => setLights(true)} /> Yes
+            <input type="radio" name="lights" checked={!lights} onChange={() => setLights(false)} /> No
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Fluids:</label>
+          <div className="radio-group">
+            <input type="radio" name="fluids" checked={fluids} onChange={() => setFluids(true)} /> Yes
+            <input type="radio" name="fluids" checked={!fluids} onChange={() => setFluids(false)} /> No
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Electrical Systems:</label>
+          <div className="radio-group">
+            <input type="radio" name="electricalSystems" checked={electricalSystems} onChange={() => setElectricalSystems(true)} /> Yes
+            <input type="radio" name="electricalSystems" checked={!electricalSystems} onChange={() => setElectricalSystems(false)} /> No
+          </div>
+        </div>
+
+        <div className="form-group">
+          <label className="form-label">Wipers:</label>
+          <div className="radio-group">
+            <input type="radio" name="wipers" checked={wipers} onChange={() => setWipers(true)} /> Yes
+            <input type="radio" name="wipers" checked={!wipers} onChange={() => setWipers(false)} /> No
+          </div>
+        </div>
+
+        <button type="submit" className="submit-btn">Submit</button>
       </form>
     </div>
   );

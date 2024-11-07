@@ -32,7 +32,7 @@ function LoginForm() {
           {errors.loginMessage}
         </h3>
       )}
-      <div>
+      <div >
         <label htmlFor="username">
           Username:
           <input
