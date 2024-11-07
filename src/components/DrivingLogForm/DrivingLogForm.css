@@ -1,0 +1,77 @@
+.form-container {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  h2 {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 25px;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  /* Label Styling */
+  label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 8px;
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+  
+  /* Input Fields Styling */
+  input[type="number"],
+  input[type="text"],
+  input[type="datetime-local"] {
+    padding: 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+  }
+  
+  input[type="number"]:focus,
+  input[type="text"]:focus,
+  input[type="datetime-local"]:focus {
+    border-color: #5b9bd5;
+    outline: none;
+  }
+  
+  /* Submit Button Styling */
+  button.submit-btn {
+    padding: 18px 35px;  /* Increased button size */
+    font-size: 18px;  /* Bigger text size */
+    color: white;
+    background-color: #7f8285;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: auto;
+    align-self: flex-end; /* Align button to the right */
+    margin-top: 20px;    /* Space above the button */
+    margin-right: 50%;     /* Ensure it's flush with the right edge */
+  }
+  
+  button.submit-btn:hover {
+    background-color: #4a8fb9;
+  }
+  
+  button.submit-btn:active {
+    background-color: #357a99;
+  }
+  

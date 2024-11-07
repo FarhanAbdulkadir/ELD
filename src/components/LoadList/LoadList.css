@@ -1,0 +1,118 @@
+.load-list-container {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Title */
+  .load-list-title {
+    text-align: center;
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+  }
+  
+  /* Table styling */
+  .load-list-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .load-list-table th,
+  .load-list-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .load-list-table th {
+    background-color: #4CAF50;
+    color: white;
+  }
+  
+  .load-list-table tr:hover {
+    background-color: #f1f1f1;
+  }
+  
+  /* Button Styling */
+  .edit-btn,
+  .delete-btn {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    margin-right: 8px;
+  }
+  
+  .edit-btn {
+    background-color: #4CAF50;
+  }
+  
+  .delete-btn {
+    background-color: #f44336;
+  }
+  
+  /* Hover and Active States for Buttons */
+  .edit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .delete-btn:hover {
+    background-color: #e53935;
+  }
+  
+  .edit-btn:active,
+  .delete-btn:active {
+    opacity: 0.8;
+  }
+  
+  /* Table row when editing */
+  .load-list-table td input,
+  .load-list-table td select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 5px 0;
+  }
+  
+  .load-list-table td input:focus,
+  .load-list-table td select:focus {
+    border-color: #4CAF50;
+    outline: none;
+  }
+  
+  /* Styling for the form inside the table */
+  .load-list-table td form {
+    margin: 0;
+  }
+  
+  /* Responsive Design for smaller screens */
+  @media (max-width: 768px) {
+    .load-list-table th,
+    .load-list-table td {
+      font-size: 14px;
+      padding: 8px 10px;
+    }
+  
+    .load-list-table th {
+      font-size: 16px;
+    }
+  
+    .edit-btn,
+    .delete-btn {
+      font-size: 12px;
+      padding: 6px 12px;
+    }
+  
+    .load-list-title {
+      font-size: 24px;
+    }
+  }
+  

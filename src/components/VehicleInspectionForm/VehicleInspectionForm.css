@@ -1,0 +1,63 @@
+/* Container for the entire form */
+.inspection-form-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .inspection-form-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+  
+  /* Form itself */
+  .inspection-form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .form-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .radio-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 5px;
+  }
+  
+  .radio-group input {
+    margin-right: 5px;
+  }
+  
+  .submit-btn {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: background-color 0.3s;
+  }
+  
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+  
+  .submit-btn:focus {
+    outline: none;
+  }
+  

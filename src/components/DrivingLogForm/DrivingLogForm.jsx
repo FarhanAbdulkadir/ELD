@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import swal from 'sweetalert';
+import "./DrivingLogForm.css"
 
 function DrivingLogForm() {
 
@@ -35,17 +36,17 @@ function DrivingLogForm() {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h2>Driver Information</h2>
       <form onSubmit={handleLogSubmit}>
         <label >
-          userId:
-          <input type='number' value={userId} onChange={(e)=>SetUserId(e.target.value)} required />
+          Driver ID:
+          <input type='number' value={userId} onChange={(e)=>SetUserId(e.target.value)} required  placeholder='Enter Driver ID'/>
         </label>
         <br />
         <label>
           Location:
-          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required />
+          <input type="text" value={location} onChange={(e) => setLocation(e.target.value)} required placeholder='Enter your current Location'/>
         </label>
         <br />
         <label>
@@ -58,7 +59,7 @@ function DrivingLogForm() {
           <input type="datetime-local" value={endTime} onChange={(e) => setEndTime(e.target.value)} />
         </label>
         <br />
-        <button type="submit">Submit</button>
+        <button className='submit-btn' type="submit">Submit</button>
       </form>
     </div>
   );

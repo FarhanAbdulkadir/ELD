@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import LoadForm from '../LoadForm/LoadForm';
+import './LoadList.css'; // Import the styling
 
 function LoadList({ loads, onDelete, onUpdate }) {
   const [editingLoad, setEditingLoad] = useState(null);
@@ -18,21 +19,21 @@ function LoadList({ loads, onDelete, onUpdate }) {
   };
 
   return (
-    <div>
-      <h2>Manage Loads</h2>
-      <table>
+    <div className="load-list-container">
+      <h2 className="load-list-title">Manage Loads</h2>
+      <table className="load-list-table">
         <thead>
           <tr>
             <th>Description</th>
             <th>Pickup Location</th>
             <th>Dropoff Location</th>
             <th>Time</th>
-            <th>User ID</th>
+            <th>Driver ID</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody>
-          {loads.map(load => (
+          {loads.map((load) => (
             <tr key={load.id}>
               {editingLoad && editingLoad.id === load.id ? (
                 <td colSpan="6">
@@ -50,8 +51,18 @@ function LoadList({ loads, onDelete, onUpdate }) {
                   <td>{new Date(load.time).toLocaleString()}</td>
                   <td>{load.user_id}</td>
                   <td>
-                    <button onClick={() => handleEditClick(load)}>Edit</button>
-                    <button onClick={() => onDelete(load.id)}>Delete</button>
+                    <button
+                      className="edit-btn"
+                      onClick={() => handleEditClick(load)}
+                    >
+                      Edit
+                    </button>
+                    <button
+                      className="delete-btn"
+                      onClick={() => onDelete(load.id)}
+                    >
+                      Delete
+                    </button>
                   </td>
                 </>
               )}
