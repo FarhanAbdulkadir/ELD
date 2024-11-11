@@ -4,7 +4,7 @@ import { Link, Route, Switch } from 'react-router-dom';
 import LoadList from '../LoadList/LoadList';
 import LoadForm from '../LoadForm/LoadForm';
 import DriverInfoDispatcher from '../DriverInfoDispatcher/DriverInfoDispatcher';
-import './DispatcherDashboard.css'; // Import the styling
+import './DispatcherDashboard.css'; // Import your updated styling
 
 function DispatcherDashboard() {
   const [loads, setLoads] = useState([]);
@@ -35,7 +35,7 @@ function DispatcherDashboard() {
     try {
       await axios.put(`/api/loads/${id}`, updatedLoad);
       fetchLoads(); // Refresh the load list
-    } catch (error)      {
+    } catch (error) {
       console.error('Error updating load:', error);
     }
   };
@@ -51,42 +51,44 @@ function DispatcherDashboard() {
 
   return (
     <div className="dashboard-container">
-      <h1 className="dashboard-title">Dispatcher Dashboard</h1>
+      {/* Main Navigation bar */}
+      {/* <h1 className="dashboard-title">Dispatcher Dashboard</h1> */}
 
-      {/* Navigation Bar placed under the dashboard title */}
-      <div className="dashboard-nav-container">
-        <nav className="dashboard-nav">
-          <ul>
-            <li>
-              <Link className="nav-link" to="/dispatcher-dashboard/loads/add">Add Load</Link>
-            </li>
-            <li>
-              <Link className="nav-link" to="/dispatcher-dashboard/loads">Manage Loads</Link>
-            </li>
-            <li>
-              <Link className="nav-link" to="/dispatcher-dashboard/loads/driver">Driver Information</Link>
-            </li>
-          </ul>
-        </nav>
+      {/* Side Navigation */}
+      <div className="sidenav">
+        <ul>
+          <li>
+            <Link className="nav-btn" to="/dispatcher-dashboard/loads/add">
+              <button className="nav-button">Add Load</button>
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-btn" to="/dispatcher-dashboard/loads">
+              <button className="nav-button">Manage Loads</button>
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-btn" to="/dispatcher-dashboard/loads/driver">
+              <button className="nav-button">Driver Information</button>
+            </Link>
+          </li>
+        </ul>
       </div>
 
-      {/* Routing Content */}
-      <Switch>
-        <Route exact path="/dispatcher-dashboard/loads">
-          <h2 className="section-title"></h2>
-          <LoadList loads={loads} onDelete={deleteLoad} onUpdate={updateLoad} />
-        </Route>
-
-        <Route path="/dispatcher-dashboard/loads/add">
-          <h2 className="section-title"></h2>
-          <LoadForm onAdd={addLoad} />
-        </Route>
-
-        <Route path="/dispatcher-dashboard/loads/driver">
-          <h2 className="section-title"></h2>
-          <DriverInfoDispatcher />
-        </Route>
-      </Switch>
+      {/* Main Content */}
+      <div className="dashboard-content">
+        <Switch>
+          <Route exact path="/dispatcher-dashboard/loads">
+            <LoadList loads={loads} onDelete={deleteLoad} onUpdate={updateLoad} />
+          </Route>
+          <Route path="/dispatcher-dashboard/loads/add">
+            <LoadForm onAdd={addLoad} />
+          </Route>
+          <Route path="/dispatcher-dashboard/loads/driver">
+            <DriverInfoDispatcher />
+          </Route>
+        </Switch>
+      </div>
     </div>
   );
 }

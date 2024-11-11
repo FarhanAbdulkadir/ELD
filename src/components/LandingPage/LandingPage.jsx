@@ -20,46 +20,32 @@ function LandingPage() {
       <div className="grid">
         <div className="grid-col grid-col_8">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur
-            id felis metus. Vestibulum et pulvinar tortor. Morbi pharetra lacus
-            ut ex molestie blandit. Etiam et turpis sit amet risus mollis
-            interdum. Suspendisse et justo vitae metus bibendum fringilla sed
-            sed justo. Aliquam sollicitudin dapibus lectus, vitae consequat odio
-            elementum eget. Praesent efficitur eros vitae nunc interdum, eu
-            interdum justo facilisis. Sed pulvinar nulla ac dignissim efficitur.
-            Quisque eget eros metus. Vestibulum bibendum fringilla nibh a
-            luctus. Duis a sapien metus.
+          The ELD (Electronic Logging Device) system consists of two key dashboards: 
+          the Driver Dashboard and the Dispatch Dashboard. 
+          The Driver Dashboard allows drivers to send their location, start time, and end time at the end of each workday. 
+          This data is crucial for maintaining accurate logs of the drivers work hours and ensuring compliance with regulations.         
+         </p>
+
+          <p>
+          The Dispatch Dashboard enables dispatchers to view the real-time location and work status of drivers.
+           Once drivers report their location and working hours, dispatchers can monitor their status to ensure they are on duty and available for assignments.
+          Dispatchers can then find loads and assign them to the appropriate driver based on location and availability.
           </p>
 
           <p>
-            Praesent consectetur orci dui, id elementum eros facilisis id. Sed
-            id dolor in augue porttitor faucibus eget sit amet ante. Nunc
-            consectetur placerat pharetra. Aenean gravida ex ut erat commodo, ut
-            finibus metus facilisis. Nullam eget lectus non urna rhoncus
-            accumsan quis id massa. Curabitur sit amet dolor nisl. Proin
-            euismod, augue at condimentum rhoncus, massa lorem semper lacus, sed
-            lobortis augue mi vel felis. Duis ultrices sapien at est convallis
-            congue.
-          </p>
-
-          <p>
-            Fusce porta diam ac tortor elementum, ut imperdiet metus volutpat.
-            Suspendisse posuere dapibus maximus. Aliquam vitae felis libero. In
-            vehicula sapien at semper ultrices. Vivamus sed feugiat libero. Sed
-            sagittis neque id diam euismod, ut egestas felis ultricies. Nullam
-            non fermentum mauris. Sed in enim ac turpis faucibus pretium in sit
-            amet nisi.
+          Additionally, the Dispatch Dashboard provides flexibility for dispatchers, allowing them to reassign or delete loads if necessary. 
+          This feature ensures that load assignments can be adjusted based on changing circumstances or availability, optimizing fleet operations and ensuring timely deliveries.
           </p>
         </div>
         <div className="grid-col grid-col_4">
           <RegisterForm />
-
+{/* 
           <center>
             <h4>Already a Member?</h4>
             <button className="btn btn_sizeSm" onClick={onLogin}>
               Login
             </button>
-          </center>
+          </center> */}
         </div>
       </div>
     </div>

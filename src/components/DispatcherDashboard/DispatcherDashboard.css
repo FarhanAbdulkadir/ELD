@@ -1,92 +1,69 @@
-/* Container for the entire dashboard 
+/* Basic styling for dashboard container */
 .dashboard-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  
-   Title of the Dashboard 
-  .dashboard-title {
-    text-align: center;
-    font-size: 32px;
-    color: #333;
-    margin-bottom: 40px;
-  }
-  
- Container for the Navigation Bar 
-  .dashboard-nav-container {
-    text-align: center;
-    margin-bottom: 30px;
-  }
-  
-  Navigation Bar 
-  .dashboard-nav {
-    background-color: #4CAF50;
-    padding: 10px 20px;
-    border-radius: 8px;
-    display: inline-block;
-  }
-  
-  .dashboard-nav ul {
-    list-style-type: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    padding: 0;
-    margin: 0;
-  }
-  
-  .dashboard-nav ul li {
-    display: inline;
-  }
-  
-  .nav-link {
-    text-decoration: none;
-    font-size: 18px;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-  }
-  
-  .nav-link:hover {
-    background-color: #45a049;
-  }
-  
- Section Titles 
-  .section-title {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 20px;
-    text-align: center;
-  }
-  
-  Responsive Design for Smaller Screens 
-  @media (max-width: 768px) {
-    .dashboard-container {
-      padding: 10px;
-    }
-  
-    .dashboard-title {
-      font-size: 28px;
-    }
-  
-    .section-title {
-      font-size: 20px;
-    }
-  
-    .dashboard-nav ul {
-      flex-direction: column;
-      align-items: center;
-    }
-  
-    .nav-link {
-      padding: 10px 15px;
-      font-size: 16px;
-    }
-  }
-  
-   */
+  display: flex;
+  min-height: 100vh;
+  flex-direction: row; /* Horizontal layout for sidebar and content */
+  margin-top: 1px; /* Adjusted margin for top nav height */
+}
+
+/* Title for the dashboard */
+.dashboard-title {
+  flex: 1;
+  padding: 20px;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Side navigation - fixed position on the left */
+.sidenav {
+  width: 250px; /* Sidebar width */
+  position: fixed;
+  top: 100px; /* Move sidebar down to avoid top nav */
+  left: 0;
+  background-color: #f4f4f4;
+  height: calc(100vh - 60px); /* Adjust for top navigation */
+  padding-top: 20px;
+  z-index: 10;
+}
+
+.sidenav ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidenav ul li {
+  margin: 15px 0;
+}
+
+.nav-btn {
+  text-decoration: none;
+}
+
+.nav-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  text-align: left;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.nav-button:hover {
+  background-color: #0056b3;
+}
+
+/* Content section */
+.dashboard-content {
+  margin-left: 250px; /* Adjust the content layout so it doesn't overlap with the sidebar */
+  padding: 20px;
+  flex: 1;
+  margin-top: 10px; /* Offset for top navigation */
+  transition: margin-left 0.3s ease; /* Smooth transition for dynamic layouts */
+  padding-top: 20px; /* Ensure content doesn't sit flush against top */
+}
+
+
