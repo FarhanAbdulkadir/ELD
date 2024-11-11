@@ -39,7 +39,7 @@ function DriverInfoDispatcher() {
               {driver.start_time && <td>{new Date(driver.start_time).toLocaleString()}</td>} 
               {!driver.start_time && <td>No Start Time</td>} 
               {driver.end_time && <td>{new Date(driver.end_time).toLocaleString()}</td>} 
-              {!driver.end_time && <td>No End Time</td>}
+              {!driver.end_time && <td></td>}
               <td>{driver.user_id}</td>
             </tr>
           ))}

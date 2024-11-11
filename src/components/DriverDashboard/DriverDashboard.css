@@ -1,0 +1,70 @@
+/* Basic styling for dashboard container */
+.dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: row; /* Horizontal layout for sidebar and content */
+    margin-top: 1px; /* Adjusted margin for top nav height */
+  }
+  
+  /* Title for the dashboard */
+  .dashboard-title {
+    flex: 1;
+    padding: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /* Side navigation - fixed position on the left */
+  .sidenav {
+    width: 250px; /* Sidebar width */
+    position: fixed;
+    top: 100px; /* Move sidebar down to avoid top nav */
+    left: 0;
+    background-color: #f4f4f4;
+    height: calc(100vh - 60px); /* Adjust for top navigation */
+    padding-top: 20px;
+    z-index: 10;
+  }
+  
+  .sidenav ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .sidenav ul li {
+    margin: 15px 0;
+  }
+  
+  .nav-btn {
+    text-decoration: none;
+  }
+  
+  .nav-button {
+    width: 100%;
+    padding: 12px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Content section */
+  .dashboard-content {
+    margin-left: 250px; /* Adjust the content layout so it doesn't overlap with the sidebar */
+    padding: 20px;
+    flex: 1;
+    margin-top: 10px; /* Offset for top navigation */
+    transition: margin-left 0.3s ease; /* Smooth transition for dynamic layouts */
+    padding-top: 20px; /* Ensure content doesn't sit flush against top */
+  }
+  
+  
+  
